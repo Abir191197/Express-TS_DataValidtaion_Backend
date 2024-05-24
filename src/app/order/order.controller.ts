@@ -22,6 +22,29 @@ const createOrder = async (req: Request, res: Response) => {
 }
 
 
+
+
+//fetch all order and search
+
+const getAllOrder = async (req: Request, res: Response) => {
+  const { email } = req.query
+
+  const result = await OrderService.getAllOrderFromDB(email as string)
+
+  return res.status(result.status).json({
+    success: result.success,
+    message: result.message,
+    data: result.data,
+  })
+}
+
+
+
+
+
+
+
 export const orderController = {
   createOrder,
+  getAllOrder,
 }
