@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./product.service";
+import { TProduct } from "./product.interface";
 
 const createProduct = async (req: Request, res: Response) => {
     try {
@@ -59,8 +60,31 @@ const findByproductID = async (req: Request, res: Response) => {
 }
 
 
+//update controller
+
+const updateById = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params
+     const data : TProduct = req.body;
+
+    
+    const updated = await ProductServices.updateProductByID(productId, data)
+
+    res.status(200).json({
+      success: true,
+      message: 'Product Updated by ID successfully!',
+      data: data,
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
 export const ProductControllers = {
   createProduct,
   FetchAllProduct,
   findByproductID,
+  updateById,
 }

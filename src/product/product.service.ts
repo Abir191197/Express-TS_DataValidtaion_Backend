@@ -21,6 +21,12 @@ const getProductByID = async (id:String) => {
     return result;
 }
 
+const updateProductByID = async (id: String,data:TProduct) => {
+    
+    const result = await ProductModel.findByIdAndUpdate(id,data);
+    return result;
+}
+
 
 
 
@@ -29,4 +35,5 @@ export const ProductServices = {
   createProductIntoDB,
   getAllProductFromDB,
   getProductByID,
+  updateProductByID,
 }
