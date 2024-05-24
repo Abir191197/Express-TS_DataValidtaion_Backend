@@ -15,7 +15,7 @@ const createProductIntoDB =async (product: TProduct) => {
 // }
 
 
-const getProductByID = async (id:String) => {
+export const getProductByID = async (id:String) => {
      //not work//const result = await ProductModel.aggregate([{ $match: { _id } }])
     const result = await ProductModel.findById(id);
     return result;
@@ -46,7 +46,7 @@ const deleteProductByID = async (id: String) => {
 
 
 
- const getAllProductFromDB = async (
+  const getAllProductFromDB = async (
   searchTerm?: string) => {
   try {
     let query = {}
