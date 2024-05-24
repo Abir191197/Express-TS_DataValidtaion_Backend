@@ -26,18 +26,17 @@ const createProduct = async (req: Request, res: Response) => {
 
 
 const FetchAllProduct = async (req: Request, res: Response) => {
-  try {
-   
-    const result = await ProductServices.getAllProductFromDB()
+  const { searchTerm } = req.query
 
-    res.status(200).json({
-      success: true,
-      message: 'Product Fetch Successfully',
-      data: result,
-    })
-  } catch (error) {
-    console.log(error)
-  }
+  const result = await ProductServices.getAllProductFromDB(
+    searchTerm as string,
+  )
+
+  return res.status(result.status).json({
+    success: result.success,
+    message: result.message,
+    data: result.data,
+  })
 }
 
 
@@ -99,11 +98,11 @@ const DeleteById = async (req: Request, res: Response) => {
 }
 
 
-
 export const ProductControllers = {
   createProduct,
   FetchAllProduct,
   findByproductID,
   updateById,
   DeleteById,
+  
 }

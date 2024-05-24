@@ -9,10 +9,10 @@ const createProductIntoDB =async (product: TProduct) => {
     // return korel controller e cole jabe
 }
 
-const getAllProductFromDB = async () => {
-    const result = await ProductModel.find();
-    return result;
-}
+// const getAllProductFromDB = async () => {
+//     const result = await ProductModel.find();
+//     return result;
+// }
 
 
 const getProductByID = async (id:String) => {
@@ -35,7 +35,53 @@ const deleteProductByID = async (id: String) => {
     return result;
 }
 
+//search by anything
 
+// const searchProductIntoDB = async (data: string) => {
+//   const result = await ProductModel.find({
+//     name: { $regex: data, $options: 'i' }, 
+//   })
+//   return result
+// }
+
+
+
+ const getAllProductFromDB = async (
+  searchTerm?: string) => {
+  try {
+    let query = {}
+    if (searchTerm) {
+      query = {
+        $or: [
+          { name: { $regex: searchTerm, $options: 'i' } },
+          { description: { $regex: searchTerm, $options: 'i' } },
+          { category: { $regex: searchTerm, $options: 'i' } },
+        ],
+      }
+    }
+
+    const products = await ProductModel.find(query)
+
+    const message = searchTerm
+      ? `Products matching search term "${searchTerm}" fetched successfully!`
+      : 'Products fetched successfully!'
+
+    return {
+      success: true,
+      status: 200,
+      message,
+      data: products,
+    }
+  } catch (error) {
+    console.log(error)
+    return {
+      success: false,
+      status: 500,
+      message: 'Internal server error',
+      data: null,
+    }
+  }
+}
 
 
 
@@ -45,4 +91,5 @@ export const ProductServices = {
   getProductByID,
   updateProductByID,
   deleteProductByID,
+  
 }
