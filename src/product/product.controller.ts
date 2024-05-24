@@ -1,13 +1,16 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./product.service";
 import { TProduct } from "./product.interface";
+import { productValidationSchema } from "./product.validtion";
 
 const createProduct = async (req: Request, res: Response) => {
     try {
         const product = req.body;
         //send response
-        //send or call  service function  to send this data
-        const result = await ProductServices.createProductIntoDB(product);
+      //send or call  service function  to send this data
+      
+      const zodPerseData = productValidationSchema.parse(product);
+        const result = await ProductServices.createProductIntoDB(zodPerseData)
 
         res.status(200).json({
             success: true,
@@ -64,10 +67,14 @@ const findByproductID = async (req: Request, res: Response) => {
 const updateById = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params
-     const data : TProduct = req.body;
+    const data: TProduct = req.body;
+    const zodPerseData = productValidationSchema.parse(data)
 
     
-    const updated = await ProductServices.updateProductByID(productId, data)
+    const updated = await ProductServices.updateProductByID(
+      productId,
+      zodPerseData,
+    )
 
     res.status(200).json({
       success: true,
