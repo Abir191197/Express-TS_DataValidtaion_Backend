@@ -28,6 +28,14 @@ const updateProductByID = async (id: String,data:TProduct) => {
 }
 
 
+//delete product
+
+const deleteProductByID = async (id: String) => {
+    const result = await ProductModel.findByIdAndDelete(id);
+    return result;
+}
+
+
 
 
 
@@ -36,4 +44,5 @@ export const ProductServices = {
   getAllProductFromDB,
   getProductByID,
   updateProductByID,
+  deleteProductByID,
 }

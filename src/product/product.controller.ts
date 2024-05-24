@@ -79,6 +79,24 @@ const updateById = async (req: Request, res: Response) => {
     console.log(error)
   }
 }
+//Delete COntroller
+
+const DeleteById = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params
+    
+
+    const result = await ProductServices.deleteProductByID(productId)
+
+    res.status(200).json({
+      success: true,
+      message: 'Product Delete successfully!',
+      data: result,
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 
 
@@ -87,4 +105,5 @@ export const ProductControllers = {
   FetchAllProduct,
   findByproductID,
   updateById,
+  DeleteById,
 }
