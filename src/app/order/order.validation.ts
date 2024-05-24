@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const OrderSchema = z.object({
+export const OrderValidationSchema = z.object({
   email: z.string().email({
     message: 'Invalid email format. Please provide a valid email address.',
   }),
