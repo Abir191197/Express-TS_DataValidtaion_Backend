@@ -5,6 +5,6 @@ const router = express.Router()
 //will call controller
 router.post('/', ProductControllers.createProduct)
 router.get('/', ProductControllers.FetchAllProduct)
-
+router.get('/:productId',ProductControllers.findByproductID)
 
 export const ProductRoutes = router;

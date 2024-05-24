@@ -15,6 +15,11 @@ const getAllProductFromDB = async () => {
 }
 
 
+const getProductByID = async (id:String) => {
+     //not work//const result = await ProductModel.aggregate([{ $match: { _id } }])
+    const result = await ProductModel.findById(id);
+    return result;
+}
 
 
 
@@ -23,4 +28,5 @@ const getAllProductFromDB = async () => {
 export const ProductServices = {
   createProductIntoDB,
   getAllProductFromDB,
+  getProductByID,
 }

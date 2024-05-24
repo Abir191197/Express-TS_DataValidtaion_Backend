@@ -8,6 +8,8 @@ export type TProduct = {
   inventory: TInventory
 }
 
+
+
 export type TVariant = {
   type: string
   value: string
