@@ -10,7 +10,8 @@ Follow these steps to run the application locally:
 
 1. **Node.js and npm**: Ensure that Node.js and npm are installed on your machine. You can download and install Node.js from [here](https://nodejs.org/).
 
-2. **MongoDB**: MongoDB should be installed and running locally on your machine. You can download and install MongoDB from [here](https://www.mongodb.com/try/download/community).
+2. **MongoDB**: MongoDB should be installed and running locally on your machine. You can download and install MongoDB from [here](https://www.mongodb.com/try/download/community).  
+
 
 ### Installation
 
