@@ -12,7 +12,7 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.get('/', (req, res) => {
-    res.send('Server is running End path /api/products');
+    res.send('Server is running!!  Show product  https://ecom-backend-kohl.vercel.app/api/products OR Order list https://ecom-backend-kohl.vercel.app/api/orders  ');
 });
 app.use('/api/products', product_route_1.ProductRoutes);
 app.use('/api/orders', order_route_1.OrderRoutes);

@@ -9,7 +9,9 @@ app.use(express.json())
 app.use(cors())
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Server is running End path /api/products')
+  res.send(
+    'Server is running!!  Show product  https://ecom-backend-kohl.vercel.app/api/products OR Order list https://ecom-backend-kohl.vercel.app/api/orders  ',
+  )
 })
 app.use('/api/products', ProductRoutes)
 app.use('/api/orders', OrderRoutes)
